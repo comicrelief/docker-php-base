@@ -1,11 +1,10 @@
 FROM php:7.0-apache
 
 RUN apt-get update -qq && \
-    apt-get install -y unzip git-core && \
+    apt-get install -y unzip git-core libicu-dev && \
     a2enmod rewrite
 
-RUN apt-get install -y libicu-dev &&
-    docker-php-ext-install intl
+RUN docker-php-ext-install intl
 
 RUN pecl install xdebug && \
     docker-php-ext-enable xdebug
