@@ -1,10 +1,10 @@
 FROM php:7.0-apache
 
-RUN apt-get update -qq \
-    apt-get install -y unzip git-core \
+RUN apt-get update -qq && \
+    apt-get install -y unzip git-core && \
     a2enmod rewrite
 
-RUN pecl install xdebug \
+RUN pecl install xdebug && \
     docker-php-ext-enable xdebug
 
 # Install Composer
