@@ -6,8 +6,7 @@ RUN apt-get update -qq  \
 
 # Apache configuration
 RUN a2enmod rewrite \
- && sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf \
- && printf '[Date]\ndate.timezone=Europe/London' > /usr/local/etc/php/conf.d/timezone.ini \
+ && printf '[Date]\ndate.timezone=UTC' > /usr/local/etc/php/conf.d/timezone.ini \
  && a2dissite 000-default
 
 COPY config/vhost/* /etc/apache2/sites-available/
