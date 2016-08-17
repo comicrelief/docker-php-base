@@ -1,7 +1,8 @@
 # Docker  php7-base
 
 PHP extensons enabled by default:
- - xdebug
  - intl
- - sockets
+ - opcache
  - pdo_mysql
+ - sockets
+ - xdebug
