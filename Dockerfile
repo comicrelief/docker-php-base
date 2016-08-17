@@ -16,6 +16,7 @@ RUN pecl install xdebug \
  && docker-php-ext-enable xdebug \
  && docker-php-ext-install intl \
  && docker-php-ext-install sockets \
+ && docker-php-ext-install opcache \
  && docker-php-ext-install pdo_mysql \
  && touch /tmp/mysql.sock
 
