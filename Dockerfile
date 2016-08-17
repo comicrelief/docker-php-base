@@ -20,3 +20,5 @@ RUN pecl install xdebug \
 
 # Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=1.2.0
+# Composer parallel install plugin
+RUN composer global require hirak/prestissimo
