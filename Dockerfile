@@ -2,7 +2,7 @@ FROM php:7.0-apache
 
 # System packages
 RUN apt-get update -qq  \
- && apt-get install -y unzip git-core libicu-dev vim-tiny
+ && apt-get install -y unzip git-core libicu-dev vim-tiny \
  && rm -rf /var/lib/apt/lists/* /var/cache/apk/*
 
 # Apache configuration
