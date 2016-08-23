@@ -1,27 +1,21 @@
 FROM php:7.0-apache
 
+COPY config/vhost/* /etc/apache2/sites-available/
+COPY config/php.ini /usr/local/etc/php/
+
 # System packages
 RUN apt-get update -qq  \
  && apt-get install -y unzip git-core libicu-dev vim-tiny \
  && rm -rf /var/lib/apt/lists/* /var/cache/apk/*
-
-# Apache configuration
-RUN a2enmod rewrite \
+ # Apache configuration
+ && a2enmod rewrite \
  && a2dissite 000-default
-
-COPY config/vhost/* /etc/apache2/sites-available/
-COPY config/php.ini /usr/local/etc/php/
-
-# PECL / extension builds and install
-RUN pecl install xdebug \
+ # PECL / extension builds and install
+ && pecl install xdebug \
  && docker-php-ext-enable xdebug \
- && docker-php-ext-install intl \
- && docker-php-ext-install sockets \
- && docker-php-ext-install opcache \
- && docker-php-ext-install pdo_mysql \
+ && docker-php-ext-install intl opcache pdo_mysql sockets \
  && touch /tmp/mysql.sock
-
-# Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=1.2.0
-# Composer parallel install plugin
-RUN composer global require hirak/prestissimo
+ # Composer
+ && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+ # Composer parallel install plugin
+ && composer global require hirak/prestissimo
