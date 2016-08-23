@@ -2,14 +2,15 @@ FROM php:7.0-apache
 
 # System packages
 RUN apt-get update -qq  \
- && apt-get install -y unzip git-core libicu-dev
+ && apt-get install -y unzip git-core libicu-dev nano
+ && rm -rf /var/lib/apt/lists/* /var/cache/apk/*
 
 # Apache configuration
 RUN a2enmod rewrite \
- && printf '[Date]\ndate.timezone=UTC' > /usr/local/etc/php/conf.d/timezone.ini \
  && a2dissite 000-default
 
 COPY config/vhost/* /etc/apache2/sites-available/
+COPY config/php.ini /usr/local/etc/php/
 
 # PECL / extension builds and install
 RUN pecl install xdebug \
