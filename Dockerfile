@@ -15,13 +15,9 @@ COPY config/php.ini /usr/local/etc/php/
 # PECL / extension builds and install
 RUN pecl install xdebug \
  && docker-php-ext-enable xdebug \
- && docker-php-ext-install intl \
- && docker-php-ext-install sockets \
- && docker-php-ext-install opcache \
- && docker-php-ext-install pdo_mysql \
- && touch /tmp/mysql.sock
+ && docker-php-ext-install intl sockets opcache pdo_mysql
 
 # Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=1.2.0
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 # Composer parallel install plugin
 RUN composer global require hirak/prestissimo
