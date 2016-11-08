@@ -8,6 +8,7 @@ RUN apt-get update -qq  \
 # Apache configuration
 RUN a2enmod rewrite \
  && a2dissite 000-default
+ && echo ServerName localhost >> /etc/apache2/apache2.conf
 
 COPY config/vhost/* /etc/apache2/sites-available/
 COPY config/php.ini /usr/local/etc/php/
