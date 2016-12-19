@@ -18,6 +18,11 @@ RUN pecl install xdebug \
  && docker-php-ext-enable xdebug \
  && docker-php-ext-install intl sockets opcache pdo_mysql
 
+# Enable remote debugging with xdebug
+RUN echo 'xdebug.remote_enable=on' >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+ && echo 'xdebug.remote_connect_back=on' >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+ && echo 'xdebug.remote_autostart=on' >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
 # Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 # Composer parallel install plugin
