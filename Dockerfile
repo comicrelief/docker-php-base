@@ -7,6 +7,7 @@ RUN apt-get update -qq  \
 
 # Apache configuration
 RUN a2enmod rewrite \
+ && a2enmod ssl \
  && a2dissite 000-default \
  && echo ServerName localhost >> /etc/apache2/apache2.conf
 
