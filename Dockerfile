@@ -17,7 +17,7 @@ COPY config/php.ini /usr/local/etc/php/
 # PECL / extension builds and install
 RUN pecl install xdebug \
  && docker-php-ext-enable xdebug \
- && docker-php-ext-install intl sockets opcache pdo_mysql
+ && docker-php-ext-install bcmath intl sockets opcache pdo_mysql
 
 # Enable remote debugging with xdebug
 RUN echo 'xdebug.remote_enable=on' >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
