@@ -2,8 +2,10 @@ FROM php:7.0-apache
 
 # System packages
 RUN apt-get update -qq  \
- && apt-get install -y unzip git-core libicu-dev vim-tiny \
+ && apt-get install -y unzip git-core libicu-dev vim-tiny ssh \
  && rm -rf /var/lib/apt/lists/* /var/cache/apk/*
+
+RUN ssh-keyscan -H github.com >> ~/.ssh/known_hosts
 
 # Apache configuration
 RUN a2enmod rewrite \
