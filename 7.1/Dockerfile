@@ -6,7 +6,7 @@ RUN apt-get update -qq  \
  && rm -rf /var/lib/apt/lists/* /var/cache/apk/*
 
 RUN mkdir /root/.ssh/ \
- && touch /root/.ssh/known_hosts
+ && touch /root/.ssh/known_hosts \
  && ssh-keyscan -H github.com >> /root/.ssh/known_hosts
 
 # Apache configuration
