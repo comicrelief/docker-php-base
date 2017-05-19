@@ -5,7 +5,9 @@ RUN apt-get update -qq  \
  && apt-get install -y unzip git-core libicu-dev vim-tiny ssh \
  && rm -rf /var/lib/apt/lists/* /var/cache/apk/*
 
-RUN ssh-keyscan -H github.com >> /root/.ssh/known_hosts
+RUN mkdir /root/.ssh/ \
+ && touch /root/.ssh/known_hosts
+ && ssh-keyscan -H github.com >> /root/.ssh/known_hosts
 
 # Apache configuration
 RUN a2enmod rewrite \
