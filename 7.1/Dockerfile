@@ -5,7 +5,7 @@ RUN apt-get update -qq  \
  && apt-get install -y unzip git-core libicu-dev vim-tiny ssh \
  && rm -rf /var/lib/apt/lists/* /var/cache/apk/*
 
-RUN ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+RUN ssh-keyscan -H github.com >> /root/.ssh/known_hosts
 
 # Apache configuration
 RUN a2enmod rewrite \
@@ -13,13 +13,17 @@ RUN a2enmod rewrite \
  && a2dissite 000-default \
  && echo ServerName localhost >> /etc/apache2/apache2.conf
 
-COPY config/vhost/* /etc/apache2/sites-available/
-COPY config/php.ini /usr/local/etc/php/
+COPY ../config/vhost/* /etc/apache2/sites-available/
+COPY ../config/php.ini /usr/local/etc/php/
 
 # PECL / extension builds and install
 RUN pecl install xdebug \
  && docker-php-ext-enable xdebug \
  && docker-php-ext-install bcmath intl sockets opcache pdo_mysql
+
+# Install APCU
+RUN pecl install apcu-5.1.8 \
+ && docker-php-ext-enable apcu
 
 # Enable remote debugging with xdebug
 RUN echo 'xdebug.remote_enable=on' >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \

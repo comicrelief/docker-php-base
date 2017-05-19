@@ -10,6 +10,7 @@ Example usage of this base image:
 - [docker-php7-slim](https://github.com/comicrelief/docker-php7-slim)
 
 ## PHP extensions
+ - apcu
  - bcmath
  - intl
  - opcache
