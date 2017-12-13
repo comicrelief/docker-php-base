@@ -19,9 +19,9 @@ COPY config/vhost/* /etc/apache2/sites-available/
 COPY config/php.ini /usr/local/etc/php/
 
 # PECL / extension builds and install
-RUN pecl install xdebug-2.6.0alpha1 \
- && docker-php-ext-enable xdebug \
- && docker-php-ext-install bcmath intl sockets opcache pdo_mysql
+RUN pecl install xdebug-2.6.0alpha1
+RUN docker-php-ext-enable xdebug
+RUN docker-php-ext-install bcmath intl sockets opcache pdo_mysql
 
 # Install APCU
 RUN pecl install apcu-5.1.8 \
