@@ -19,7 +19,7 @@ COPY config/vhost/* /etc/apache2/sites-available/
 COPY config/php.ini /usr/local/etc/php/
 
 # PECL / extension builds and install
-RUN pecl install xdebug \
+RUN pecl install xdebug-2.6.0alpha1 \
  && docker-php-ext-enable xdebug \
  && docker-php-ext-install bcmath intl sockets opcache pdo_mysql
 
