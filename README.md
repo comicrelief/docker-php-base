@@ -18,3 +18,12 @@ Example usage of this base image:
  - pdo_mysql
  - sockets
  - xdebug
+
+## Apache vhost config
+This docker image provides apache vhost site configurations to be enabled in Dockerfile which extends this one.
+- **slim.conf**: Web directory is `public`
+- **slim-ssl.conf**: Web directory is `public` and has ssl enabled. 
+Expects `local.key` and `local.crt` in `/var/www/html/ssl/` directory. 
+- **symfony.conf**: Web didectory is `web`
+- **symfony-ssl.conf**: Web directory is `web` and has ssl enabled. 
+Expects `local.key` and `local.crt` in `/var/www/html/ssl/` directory.
