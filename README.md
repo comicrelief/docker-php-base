@@ -24,6 +24,6 @@ This docker image provides apache vhost site configurations to be enabled in Doc
 - **public.conf**: Web directory is `public`
 - **public-ssl.conf**: Web directory is `public` and has ssl enabled. 
 Expects `local.key` and `local.crt` in `/var/www/html/config/ssl/` directory. 
-- **web.conf**: Web didectory is `web`
+- **web.conf**: Web directory is `web`
 - **web-ssl.conf**: Web directory is `web` and has ssl enabled. 
 Expects `local.key` and `local.crt` in `/var/www/html/config/ssl/` directory.
